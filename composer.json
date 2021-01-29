@@ -1,0 +1,15 @@
+{
+    "name": "nucarf/invoice",
+    "description": "nucarf invoice center",
+    "authors": [
+        {
+            "name": "lihongwei",
+            "email": "lihongwei@nucarf.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nucarf\\Invoice\\": "src/"
+        }
+    }
+}
