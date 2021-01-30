@@ -6,7 +6,7 @@ use Nucarf\Invoice\Sales\Repository\ConsoleRepository;
 
 class Test
 {
-    public function test()
+    public static function test()
     {
         $r = new ConsoleRepository();
         var_dump($r->getCard());
