@@ -8,7 +8,6 @@ class ConsoleRepository
 {
     public function getCard()
     {
-        return 'fsdfsdf';
         return ConsoleModel::getInstance()->getCartById(1);
     }
 }
