@@ -1,0 +1,26 @@
+{
+    "code":"1000",
+    "msg":"OK",
+    "data":{
+        "id":"123",
+        "bankCode":"11021",
+        "bankName":"中国工商银行",
+        "logo":"http://upload.uschinapress.com/2015/0922/1442954172522.jpg",
+        "accountName":"张三",
+        "cardNo":"6217000023423434534",
+        "mobile":"13692234354",
+        "province":"北京",
+        "city":"北京",
+        "bankSite":"和平里支行",
+        "siteCode":"11211",
+        "singleLimitRecharge":1000,
+        "singleDayRecharge":10000,
+        "singleLimitWithdrawCash":100,
+        "singleDayWithdrawCash":1,
+        "bank_status":3,
+        "card_status":1,
+        "balance":1,
+        "singleMonthWithdrawNums":1,
+        "card_id":1
+    }
+}

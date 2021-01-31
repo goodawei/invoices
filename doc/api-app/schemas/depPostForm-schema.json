@@ -1,0 +1,31 @@
+{
+    "type":"object",
+    "required":true,
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties":{
+        "code":{
+            "type":"string",
+            "required": true
+        },
+        "msg":{
+            "type": "string",
+            "required": true
+        },
+        "data":{
+            "type": "object",
+            "required": true,
+            "properties":{
+                "url":{
+                    "type": "string",
+                    "required": true,
+                    "description": "需要提交的表单地址"
+                },
+                "formData":{
+                    "type": "string",
+                    "required": true,
+                    "description": "需要提交的表单数据"
+                }
+            }
+        }
+    }
+}

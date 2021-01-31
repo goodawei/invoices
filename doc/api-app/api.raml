@@ -1,0 +1,156 @@
+#%RAML 1.0
+title: 销项发票
+version: 1.0
+baseUri: http://localhost:6060/api
+protocols: [HTTP,HTTPS]
+mediaType: application/json
+documentation: 
+  - title: 接口说明
+    content: !include docs/api-doc.md
+schemas: 
+  - success-schema: !include schemas/success-schema.json
+  - postForm-schema: !include schemas/depPostForm-schema.json
+  - auditFile-req-schema: !include schemas/sales/auditFile-req-schema.json
+  - fetchAuditFileResult-req-schema: !include schemas/sales/fetchAuditFileResult-req-schema.json
+  - fetchRuleConfig-req-schema: !include schemas/sales/fetchRuleConfig-req-schema.json
+  - applicationRecord-req-schema: !include schemas/sales/applicationRecord-req-schema.json
+  - applicationRecord-schema: !include schemas/sales/applicationRecord-schema.json
+  - unbindCardApply-req-schema: !include schemas/sales/unbindCardApply-req-schema.json
+  - migrateBindCard-req-schema: !include schemas/sales/migrateBindCard-req-schema.json
+  - unbindCardDirect-req-schema: !include schemas/sales/unbindCardDirect-req-schema.json
+  - unbindCardFile-upload-schema: !include schemas/sales/unbindCardFile-upload-schema.json
+
+resourceTypes: 
+  - public: !include resourceTypes/publicAPI.raml
+  - auth: !include resourceTypes/authAPI.raml
+
+#条件合规资料审核
+/invoice/auditReview:
+  description: !include docs/sales/auditFile-doc.md
+  type: auth
+  post:
+    body: 
+      schema: auditFile-req-schema
+      example: !include examples/sales/auditFile-req-example.json
+    responses: 
+      200:
+        body: 
+         schema: postForm-schema
+         example: !include examples/sales/auditFile-res-example.json
+#条件合规资料审核结果查询
+/invoice/auditReview/detail:
+  description: !include docs/sales/fetchAuditFileResult-doc.md
+  type: auth
+  post:
+    body: 
+      schema: fetchAuditFileResult-req-schema
+      example: !include examples/sales/fetchAuditFileResult-req-example.json
+    responses: 
+      200:
+        body: 
+          schema: bankCardDetail-schema
+          example: !include examples/sales/fetchAuditFileResult-example.json
+#企业发票配置查询接口
+/invoice/fetchRuleConfig:
+  description: !include docs/sales/fetchRuleConfig-doc.md
+  type: auth
+  post:
+    body: 
+      schema: fetchRuleConfig-req-schema
+      example: !include examples/sales/fetchRuleConfig-req-example.json
+    responses: 
+      200:
+        body: 
+          schema: postForm-schema
+          example: !include examples/sales/withdraw-example.json
+#企业发票配置修改接口
+/invoice/editRuleConfig:
+  description: !include docs/sales/charge-doc.md
+  type: auth
+  post:
+    body: 
+      schema: charge-req-schema
+      example: !include examples/sales/charge-req-example.json
+    responses: 
+      200:
+        body: 
+          schema: postForm-schema
+          example: !include examples/sales/fetchRuleConfig-example.json
+#企业发票申请记录查询接口
+/invoice/applicationRecord/list:
+  description: !include docs/sales/applicationRecord-doc.md
+  type: auth
+  post:
+    body: 
+      schema: applicationRecord-req-schema
+      example: !include examples/sales/applicationRecord-req-example.json
+    responses: 
+      200:
+        body: 
+          schema: applicationRecord-schema
+          example: !include examples/sales/applicationRecord-res-example.json
+#企业发票明细查询接口
+/invoice/applicationRecord/detail:
+  description: !include docs/sales/fetchDetail-doc.md
+  type: auth
+  post:
+    body: 
+      binary/octet-stream:
+      multipart/form-data:
+        formParameters: 
+          data:
+            type: string
+            required: true
+            example: \{data:\{"uid":"11321","type":1\}\}
+            description: uid-用户ID， type-文件类型：1-手持身份证照片 2-身份证正面照 3-身份证背面照片
+          file:
+            type: file
+            required: true
+            example: !include examples/sales/unbindCard-req-example.txt
+    responses: 
+      200:
+        body: 
+          application/json:
+            schema: unbindCardFile-upload-schema
+            example: !include examples/sales/unbindCardFile-upload-example.json
+#企业可开票金额查询接口
+/invoice/blance/detail:
+  description: !include docs/sales/unbindCardApply-doc.md
+  type: auth
+  post:
+    body:
+      schema: unbindCardApply-req-schema
+      example: !include examples/sales/unbindCardApply-req-example.json
+    responses:
+      200:
+        body:
+          schema: success-schema
+          example: !include examples/success-example.json
+
+#企业开票申请接口
+/invoice/application:
+  description: !include docs/sales/unbindCardDirect-doc.md
+  type: auth
+  post:
+    body:
+      schema: unbindCardDirect-req-schema
+      example: !include examples/sales/unbindCardDirect-req-example.json
+    responses:
+      200:
+        body:
+          schema: postForm-schema
+          example: !include examples/sales/unbindCardDirect-example.json
+
+#企业开票信息\金额修改接口
+/invoice/application/edit:
+  description: !include docs/sales/migrateBindCard-doc.md
+  type: auth
+  post:
+    body: 
+      schema: migrateBindCard-req-schema
+      example: !include examples/sales/migrateBindCard-req-example.json
+    responses: 
+      200:
+        body: 
+          schema: postForm-schema
+          example: !include examples/sales/migrateBindCard-example.json

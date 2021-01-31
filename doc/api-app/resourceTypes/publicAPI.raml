@@ -1,0 +1,17 @@
+post:
+  headers: 
+    x-jbh-channel:
+      description: 接口调用渠道
+      required: true
+      type: string
+      example: android
+    x-jbh-nonce:
+      description: 随机字符串，长度16位以上
+      required: true
+      type: string
+      example: 38bddf48f43c48588e0d78761eaa1ce6
+    x-jbh-sign:
+      description: 参数签名
+      required: true
+      type: string
+      example: 38bddf48f43c4858

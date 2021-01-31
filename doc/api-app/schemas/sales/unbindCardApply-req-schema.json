@@ -1,0 +1,33 @@
+{
+    "type":"object",
+    "required":true,
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties":{
+        "data":{
+            "type": "object",
+            "required": true,
+            "properties": {
+                "uid":{
+                    "type": "string",
+                    "required":true,
+                    "description":"用户ID"
+                },
+                "idcard_picurl":{
+                    "type": "string",
+                    "required":true,
+                    "description":"手持证件"
+                },
+                "idcard_front_picurl":{
+                    "type": "string",
+                    "required":true,
+                    "description":"证件正面"
+                },
+                "idcard_reverse_picurl":{
+                    "type": "string",
+                    "required":true,
+                    "description":"证件反面"
+                }
+            }
+        }
+    }
+}

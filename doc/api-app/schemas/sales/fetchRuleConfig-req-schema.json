@@ -1,0 +1,18 @@
+{
+    "type":"object",
+    "required":true,
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties":{
+        "data":{
+            "type": "object",
+            "required": true,
+            "properties": {
+                "uid":{
+                    "type":"string",
+                    "required": true,
+                    "description":"用户ID"
+                }
+            }
+        }
+    }
+}

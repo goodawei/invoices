@@ -1,0 +1,45 @@
+{
+    "type":"object",
+    "required":true,
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties":{
+        "code":{
+            "type": "string",
+            "required": true
+        },
+        "msg":{
+            "type": "string",
+            "required": true
+        },
+        "data":{
+            "type":"array",
+            "required":true,
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "items":{
+                "type":"object",
+                "properties":{
+                    "id":{
+                        "type":"string",
+                        "required":true,
+                        "description":"照片文件ID"
+                    },
+                    "name":{
+                        "type":"string",
+                        "required":true,
+                        "description":"照片文件名"
+                    },
+                    "url":{
+                        "type":"string",
+                        "required":true,
+                        "description":"照片地址"
+                    },
+                    "type":{
+                        "type":"integer",
+                        "required":true,
+                        "description":"照片附件类型"
+                    }
+                }
+            }
+        }
+    }
+}

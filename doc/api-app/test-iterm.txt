@@ -1,0 +1,3 @@
+npm update
+
+abao ./api.raml -t 15000 -f login.js --server http://dapi.dev
